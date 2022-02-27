@@ -1,3 +1,13 @@
+
+http://localhost:3001/todos/?status=TO%20DO
+###
+
+http://localhost:3001/agenda/
+###
+
+http://localhost:3001/todos/?priority=HIGH&status=IN%20PROGRESS
+###
+
 http://localhost:3001/todos/?status=TO%20DO
 ###
 

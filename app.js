@@ -183,13 +183,11 @@ const ConvertDbToObjecT = (item) => {
 };
 
 app.get("/agenda/", async (request, response) => {
-  const { due_date } = request.query;
+  const { dueDate } = request.query;
   const getTodosQuery = `
-    SELECT id,todo,category,priority,status,due_date AS date
+    SELECT id,todo,category,priority,status,dueDate
     FROM agenda
-    GROUP BY
-    id
-    HAVING date = "2021-02-22";`;
+    WHERE dueDate = "2021-02-22";`;
   const data = await database.get(getTodosQuery);
   response.send([data]);
 });
@@ -227,7 +225,7 @@ app.put("/todos/:todoId/", async (request, response) => {
       updateCOlumn = "Status";
       break;
     case requestBody.dueDate !== undefined:
-      updateCOlumn = "Due Date";
+      updateCOlumn = "dueDate";
       break;
     default:
       updateCOlumn = "NONE";
@@ -277,6 +275,6 @@ app.delete("/todos/:todoId/", async (request, response) => {
     WHERE id = '${todoId}';`;
 
   await database.run(deleteTodo);
-  response.send("Todo Deleted");
+  console.log("Todo Deleted");
 });
 module.exports = app;
